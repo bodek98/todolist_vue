@@ -1,36 +1,37 @@
 <template>
   <div id="container">
     <h1>{{ msg }}</h1>
-    <p>Input your task</p>
-
     <input
       v-model="inputText"
       placeholder="Enter new task"
       @keydown.enter="addTask"
     />
     <button @click="hideTasks">{{ hidden ? "Show" : "Hide" }} Tasks</button>
-    <ul v-if="hidden === false">
-      <li
+    <ul v-show="hidden === false">
+      <TodoItem
         v-for="(task, index) in tasks"
-        :key="index"
-        :class="{finished__task: finished}"
-      >
-      {{ task }}
-      </li>
+        :key="task.id"
+        :title="task.title"
+        :is-finished="task.isFinished"
+        @remove-item="removeTask(index)"
+      ></TodoItem>
     </ul>
   </div>
 </template>
 
 <script>
+import TodoItem from "./TodoItem.vue";
+
 export default {
   name: "HelloWorld",
+  components: {
+    TodoItem,
+  },
   data() {
     return {
-      inputText: "",
       tasks: [],
+      inputText: "",
       hidden: false,
-      finished: false,
-      index: 0
     };
   },
   props: {
@@ -39,11 +40,14 @@ export default {
   methods: {
     addTask() {
       if (this.inputText !== "") {
-        this.tasks.push(this.inputText);
+        this.tasks.push({title: this.inputText, isFinished: false, id: Math.random()});
       } else {
-        alert("Please input something :)");
+        return;
       }
       this.inputText = "";
+    },
+    removeTask(idx) {
+      this.tasks.splice(idx, 1);
     },
     hideTasks() {
       this.hidden = !this.hidden;
@@ -57,9 +61,9 @@ export default {
 #container {
   font-size: 1.25rem;
   background-color: white;
-  width: 24rem;
+  width: 26rem;
   border-radius: 1rem;
-  box-shadow: 0 0 1rem rgb(0 0 0 / 50%);
+  box-shadow: 0 0 2rem rgb(0 0 0 / 50%);
   padding: 10px;
   position: absolute;
   top: 50%;
@@ -70,32 +74,8 @@ export default {
   list-style: none;
   margin: 1rem 0;
   padding: 0;
-}
-#container li {
-  margin: 1rem 0;
-  font-size: 1.25rem;
-  font-weight: bold;
-  background-color: rgb(164, 255, 155);
-  border: solid 0.2px;
-  padding: 0.5rem;
-  color: #1f1f1f;
-  border-radius: 25px;
-  cursor: pointer;
-}
-.finished__task {
-  text-decoration: line-through;
-  background-color: #1f1f1f;
-}
-#container button {
-  font: inherit;
-  cursor: pointer;
-  border: 2px solid #9b2164;
-  background-color: #ff0077;
-  border-radius: 1rem;
-  color: white;
-  padding: 0.2rem 1rem;
-  margin-top: 10px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
+  overflow: auto;
+  max-height: 10rem;
 }
 #container input {
   width: 90%;
@@ -104,6 +84,17 @@ export default {
   border-radius: 1rem;
   border-style: solid;
   padding: 0.4rem;
+  margin-bottom: 15px;
+}
+#container button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background-color: #ff0077d7;
+  border-radius: 1rem;
+  color: white;
+  padding: 0.2rem 1rem;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
 }
 
 </style>
