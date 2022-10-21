@@ -6,8 +6,7 @@
       placeholder="Enter new task"
       @keydown.enter="addTask"
     />
-    <button @click="hideTasks">{{ hidden ? "Show" : "Hide" }} Tasks</button>
-    <ul v-show="hidden === false">
+    <ul v-if="hidden === false">
       <TodoItem
         v-for="(task, index) in tasks"
         :key="task.id"
@@ -16,6 +15,7 @@
         @remove-item="removeTask(index)"
       ></TodoItem>
     </ul>
+    <button @click="hideTasks">{{ hidden ? "Show" : "Hide" }} Tasks</button>
   </div>
 </template>
 
@@ -72,7 +72,7 @@ export default {
 }
 #container ul {
   list-style: none;
-  margin: 1rem 0;
+  margin: 0;
   padding: 0;
   overflow: auto;
   max-height: 10rem;
@@ -84,7 +84,7 @@ export default {
   border-radius: 1rem;
   border-style: solid;
   padding: 0.4rem;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 #container button {
   font: inherit;
@@ -95,6 +95,7 @@ export default {
   color: white;
   padding: 0.2rem 1rem;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
+  margin-top: 10px;
 }
 
 </style>
