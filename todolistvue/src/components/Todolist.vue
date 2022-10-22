@@ -24,7 +24,7 @@
 import TodoItem from "./TodoItem.vue";
 
 export default {
-  name: "HelloWorld",
+  name: "todoList",
   components: {
     TodoItem,
   },
