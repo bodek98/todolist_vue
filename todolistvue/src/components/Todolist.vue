@@ -1,12 +1,13 @@
 <template>
-  <div id="container">
+  <div class="container">
     <h1>{{ msg }}</h1>
     <input
+      class="container__input"
       v-model="inputText"
       placeholder="Enter new task"
       @keydown.enter="addTask"
     />
-    <ul v-if="hidden === false">
+    <ul class="container__ul" v-show="hidden === false">
       <TodoItem
         v-for="(task, index) in tasks"
         :key="task.id"
@@ -15,7 +16,7 @@
         @remove-item="removeTask(index)"
       ></TodoItem>
     </ul>
-    <button @click="hideTasks">{{ hidden ? "Show" : "Hide" }} Tasks</button>
+    <button class="container__button" @click="hideTasks">{{ hidden ? "Show" : "Hide" }} Tasks</button>
   </div>
 </template>
 
@@ -58,7 +59,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#container {
+.container {
   font-size: 1.25rem;
   background-color: white;
   width: 26rem;
@@ -70,14 +71,15 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#container ul {
+
+.container__ul {
   list-style: none;
   margin: 0;
   padding: 0;
   overflow: auto;
   max-height: 10rem;
 }
-#container input {
+.container__input {
   width: 90%;
   padding: 0px;
   font-size: 1.25rem;
@@ -86,7 +88,7 @@ export default {
   padding: 0.4rem;
   margin-bottom: 10px;
 }
-#container button {
+.container__button {
   font: inherit;
   cursor: pointer;
   border: none;
@@ -94,8 +96,10 @@ export default {
   border-radius: 1rem;
   color: white;
   padding: 0.2rem 1rem;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
+  box-shadow: 1px 1px 2px rgb(0, 0, 0);
   margin-top: 10px;
 }
-
+.container__button:hover {
+  background-color: #ee0066c6;
+}
 </style>

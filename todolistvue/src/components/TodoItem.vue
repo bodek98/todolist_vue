@@ -1,5 +1,5 @@
 <template>
-  <li :class="{ finished__task: taskIsFinished }">
+  <li class="container__item" :class="{ 'container__item--finished': taskIsFinished }">
     <button class="gg-close-o" @click="removeItem"></button>
     <button class="gg-check-o" @click="finishTask"></button>
     {{ title }}
@@ -32,8 +32,8 @@ export default {
 };
 </script>
 
-<style>
-li {
+<style scoped>
+.container__item {
   margin: 1rem 0;
   font-size: 1.25rem;
   font-weight: bold;
@@ -45,7 +45,7 @@ li {
   border-radius: 1rem;
   word-wrap: break-word;
 }
-.finished__task {
+.container__item--finished {
   text-decoration: line-through;
   opacity: 0.6;
   background-color: rgba(158, 255, 155, 0.836);
