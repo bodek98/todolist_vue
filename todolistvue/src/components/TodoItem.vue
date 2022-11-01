@@ -1,20 +1,26 @@
 <template>
-  <li class="container__item" :class="{ 'container__item--finished': taskIsFinished }">
+  <li
+    class="container__item"
+    :class="{ 'container__item--finished': taskIsFinished }"
+  >
     <button class="gg-close-o" @click="removeItem"></button>
     <button class="gg-check-o" @click="finishTask"></button>
-    {{ title }}
+    <p class="container__p">{{ title }} {{ id }}</p>
   </li>
 </template>
 
 <script>
 export default {
   props: {
-    title: String,
-    id: Number,
+    title: {
+      type: String,
+      required: true,
+    },
     isFinished: {
       type: Boolean,
       default: false,
     },
+    id: Number,
   },
   data() {
     return {
@@ -50,7 +56,9 @@ export default {
   opacity: 0.6;
   background-color: rgba(158, 255, 155, 0.836);
 }
-
+.container__p {
+  margin: 0;
+}
 .gg-close-o {
   box-sizing: border-box;
   position: relative;
@@ -113,6 +121,6 @@ export default {
   transform: rotate(45deg);
 }
 .gg-check-o:hover {
-    color: green;
+  color: green;
 }
 </style>

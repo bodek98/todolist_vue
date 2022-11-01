@@ -1,22 +1,24 @@
 <template>
   <div class="container">
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
     <input
       class="container__input"
       v-model="inputText"
       placeholder="Enter new task"
       @keydown.enter="addTask"
     />
-    <ul class="container__ul" v-show="hidden === false">
+    <ul class="container__ul" v-show="!hidden">
       <TodoItem
-        v-for="(task, index) in tasks"
+        v-for="task in tasks"
         :key="task.id"
         :title="task.title"
         :is-finished="task.isFinished"
-        @remove-item="removeTask(index)"
+        @remove-item="removeTask(task.id)"
       ></TodoItem>
     </ul>
-    <button class="container__button" @click="hideTasks">{{ hidden ? "Show" : "Hide" }} Tasks</button>
+    <button class="container__button" @click="hideTasks">
+      {{ hidden ? "Show" : "Hide" }} Tasks
+    </button>
   </div>
 </template>
 
@@ -32,23 +34,30 @@ export default {
     return {
       tasks: [],
       inputText: "",
+      taskId: 1,
       hidden: false,
     };
   },
   props: {
-    msg: String,
+    title: String,
   },
   methods: {
     addTask() {
       if (this.inputText !== "") {
-        this.tasks.push({title: this.inputText, isFinished: false, id: Math.random()});
+        this.tasks.push({
+          title: this.inputText,
+          isFinished: false,
+          id: this.taskId,
+        });
       } else {
         return;
       }
+      this.taskId++;
       this.inputText = "";
     },
     removeTask(idx) {
-      this.tasks.splice(idx, 1);
+      let i = this.tasks.map((task) => task.id).indexOf(idx);
+      this.tasks.splice(i, 1);
     },
     hideTasks() {
       this.hidden = !this.hidden;

@@ -1,23 +1,22 @@
 <template>
-  <Todolist msg="To-do list"/>
+  <Todolist title="To-do list" />
 </template>
 
 <script>
-import Todolist from './components/Todolist.vue';
-
+import Todolist from "./components/Todolist.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Todolist
-}
-}
+    Todolist,
+  },
+};
 </script>
 
 <style>
-html{
-    height:100%;
-} 
+html {
+  height: 100%;
+}
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   margin: 0;
