@@ -1,24 +1,38 @@
-# todolistvue
+# Todo list
 
-## Project setup
-```
-npm install
-```
+## 🚀 Description
 
-### Compiles and hot-reloads for development
 ```
-npm run serve
-```
+My first app with VueJS.
+Todo list app, 
+User can add his quests to do.
 
-### Compiles and minifies for production
-```
-npm run build
 ```
 
-### Lints and fixes files
+### Screenshots
+Current version:
+
+![image](https://user-images.githubusercontent.com/94081512/199264258-a078524f-2f78-4712-b6b6-3c85c0c5c4af.png)
+
+![image](https://user-images.githubusercontent.com/94081512/199264638-099fe2ce-d7d4-457b-b07d-493f2954772b.png)
+
+
+### 🖱️ Features
+
 ```
-npm run lint
+Add task
+Mark task as done
+Delete task
+Hide/Show task list
+
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 💻 Built with
+
+```
+Technologies used in project:
+
+VueJS
+CSS
+JavaScript
+```
