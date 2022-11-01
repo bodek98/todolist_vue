@@ -10,7 +10,6 @@ User can add his quests to do.
 ```
 
 ### 📸 Screenshots
-Current version:
 
 ![image](https://user-images.githubusercontent.com/94081512/199264258-a078524f-2f78-4712-b6b6-3c85c0c5c4af.png)
 
