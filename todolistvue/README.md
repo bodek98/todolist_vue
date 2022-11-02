@@ -6,7 +6,6 @@
 My first app with VueJS.
 Todo list app, 
 User can add his quests to do.
-
 ```
 
 ### 📸 Screenshots
@@ -23,7 +22,6 @@ Add task
 Mark task as done
 Delete task
 Hide/Show task list
-
 ```
 
 ### 💻 Built with
